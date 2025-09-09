@@ -24,16 +24,24 @@
                 // Empty password: Password must be non-empty.
                 var errorMessages="";
                 let form = document.forms["inputForm"];
+                let id = form.id.value;
                 let age = form.age.value;
                 let email = form.email.value;
                 let password = form.password.value;
+                if (id.length > 10)
+                    errorMessages += "The id value should be 10 characters or less. \n";
                 if (form.age.value < 10 || form.age.value > 40)
                     errorMessages += "Age must be between 10 and 40." + "\n";
                 if (!email.includes("@"))
                     errorMessages += "Email must contain the character @." + "\n";
-                if (password === "")
+                if (!password || password.length == 0)
                     errorMessages += "Password must be non-empty." + "\n";
-                alert(errorMessages);
+                if (errorMessages !== ""){
+                    alert(errorMessages);
+                    return false;
+                }
+                return true;
+                    
             }
      
          </script>
