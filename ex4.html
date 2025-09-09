@@ -11,6 +11,7 @@
 
    <input type="text" id="inputText">
    <!-- add a button here for adding new item -->
+    <button onclick="add()">Enter</button>
 
    <ul>
       <li>Notebook<!--<button>Delete</button></li>-->
@@ -22,8 +23,30 @@
    </ul>
 
    <script>
-
+      let ul = document.getElementsByTagName("ul")[0]; 
+      let items = ul.getElementsByTagName("li");
+      for (let i = 0; i < items.length; i++) {
+         let button = document.createElement("button");
+         button.innerText = "delete";
+         button.onclick = function() { deleteItem(this); };
+         items[i].appendChild(button);
+      }
       // add code here
+      function add(){
+         let input = document.getElementById("inputText");
+         let ul = document.getElementsByTagName("ul")[0];
+         let li = document.createElement("li");
+         li.innerText = input.value;
+         let button = document.createElement("button");
+         button.innerText = "delete";
+         button.onclick = function() { deleteItem(this); };
+         li.appendChild(button);
+         ul.appendChild(li);
+      }
+
+      function deleteItem(button){
+         button.parentElement.remove();
+      }
 
    </script>
 
